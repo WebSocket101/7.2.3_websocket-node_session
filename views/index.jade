@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p Willkommen auf der Seite #{title}
+  script(charset="utf-8").
+    var ws = new WebSocket("ws://"+window.location.host);
+    ws.onopen = function(){
+      ws.send("Hallo");
+    }
+    ws.onmessage = function(evt){
+      console.log(evt.data);
+    }
